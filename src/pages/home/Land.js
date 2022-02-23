@@ -20,7 +20,7 @@ const Land = () => {
         <h5 className='leading-[10px] py-14 font-semibold text-2xl md:text-lg'>
           This is a random message
         </h5>
-        <button className='bg-[#577a30] border-[#577a30] border-2 rounded-lg text-2xl py-3 px-28 md:px-36 text-white font-extrabold italic'>
+        <button className='bg-[#577a30] border-[#577a30] border-2 rounded-lg text-2xl py-3 px-28 md:px-36 text-white font-extrabold italic hover:bg-black hover:text-[#577a30]'>
           Buy Now
         </button>
       </div>

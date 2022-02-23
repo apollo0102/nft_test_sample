@@ -41,7 +41,7 @@ const Nav = () => {
                   ))}
                 </div>
               </div>
-              <div className='hidden md:block'>
+              <div className='hidden md:block '>
                 <button className='border-[#577a30] border-2 rounded-lg p-2 text-[#577a30] font-bold hover:bg-gray-700 hover:text-white'>
                   CONNECT WALLET
                 </button>
@@ -51,7 +51,7 @@ const Nav = () => {
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 type='button'
-                className='bg-gray-900 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white'
+                className=' inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover: focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white'
                 aria-controls='mobile-menu'
                 aria-expanded='false'
               >
@@ -98,15 +98,15 @@ const Nav = () => {
         <Transition
           show={isOpen}
           enter='transition ease-out duration-100 transform'
-          enterFrom='opacity-0 scale-95'
+          enterFrom='opacity-0 scale-100'
           enterTo='opacity-100 scale-100'
           leave='transition ease-in duration-75 transform'
           leaveFrom='opacity-100 scale-100'
           leaveTo='opacity-0 scale-95'
         >
           {(ref) => (
-            <div className='md:hidden  bg-red-400 z-50' id='mobile-menu'>
-              <div ref={ref} className='px-2 pt-2 pb-3 space-y-1 float-right h-full max-h-full w-1/2 sm:px-3 '>
+            <div className='md:hidden' id='mobile-menu'>
+              <div ref={ref} className='px-2 pt-2 pb-3 space-y-5  h-full max-h-full w-1/2 sm:px-3 absolute bg-black right-0 z-50'>
               {pages.map((page) => (
                     <a
                       key={page.link}
@@ -116,8 +116,11 @@ const Nav = () => {
                       {page.text}
                     </a>
                   ))}
-
+                  <button className='border-[#577a30] border-2 rounded-lg p-2 text-[#577a30] font-bold hover:bg-gray-700 hover:text-white float-right'>
+                  CONNECT WALLET
+                </button>
               </div>
+              
             </div>
           )}
         </Transition>
