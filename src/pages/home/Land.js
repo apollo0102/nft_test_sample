@@ -13,24 +13,24 @@ const Land = () => {
     mintState.status === 'Success' && console.log('Success');
   }, [mintState])
 
-  const tokenURI = async ()=>{
-    //make metadata
-    const metadata = {};
-    metadata.name = "name__";
-    metadata.image = "https://ipfs.io/ipfs/Qmdhq43NUrCqgs9hHa8MuKToCKPetXk5N9dqjHvdGyUuw4";
-    metadata.description = "this is my sample image";
+  // const tokenURI = async ()=>{
+  //   //make metadata
+  //   const metadata = {};
+  //   metadata.name = "name__";
+  //   metadata.image = "https://ipfs.io/ipfs/Qmdhq43NUrCqgs9hHa8MuKToCKPetXk5N9dqjHvdGyUuw4";
+  //   metadata.description = "this is my sample image";
 
-    //pinata pin request
-    const pinataResponse = await pinJSONToIPFS(metadata);
-    if (!pinataResponse.success) {
+  //   //pinata pin request
+  //   const pinataResponse = await pinJSONToIPFS(metadata);
+  //   if (!pinataResponse.success) {
       
-        return {
-            success: false,
-            status: "😢 Something went wrong while uploading your tokenURI.",
-        }
-    } 
-    return pinataResponse.pinataUrl;  
-  }
+  //       return {
+  //           success: false,
+  //           status: "😢 Something went wrong while uploading your tokenURI.",
+  //       }
+  //   } 
+  //   return pinataResponse.pinataUrl;  
+  // }
   
 
   const handleMint = () => {
