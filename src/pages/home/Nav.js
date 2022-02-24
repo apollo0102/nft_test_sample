@@ -28,10 +28,11 @@ const Nav = () => {
   const { account, activate, deactivate } = useEthers()
 
   // Example for Polygon/Matic:
-  // const customNetworkOptions = {
-  //   rpcUrl: 'https://rpc-mainnet.maticvigil.com',
-  //   chainId: 137
-  // }
+  const customNetworkOptions = {
+    rpcUrl: 'https://rpc-mumbai.maticvigil.com',
+    chainId: 80001,
+    currencySymbol:'Matic'
+  }
 
   const handleConnect = async () => {
     const providerOptions = {
@@ -52,7 +53,7 @@ const Nav = () => {
         package: Fortmatic, // required
         options: {
           key: process.env.REACT_APP_FORTMATIC_KEY, // required,
-          //network: customNetworkOptions // if we don't pass it, it will default to localhost:8454
+          network: customNetworkOptions // if we don't pass it, it will default to localhost:8454
         }
       },
     }

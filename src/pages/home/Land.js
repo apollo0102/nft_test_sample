@@ -34,7 +34,7 @@ const Land = () => {
   
 
   const handleMint = () => {
-    console.log("tokenURI------>"+  tokenURI);
+    // console.log("tokenURI------>"+  tokenURI);
     account && mintNFT(account, "https://ipfs.io/ipfs/Qmdhq43NUrCqgs9hHa8MuKToCKPetXk5N9dqjHvdGyUuw4");
   }
   return (
@@ -42,7 +42,7 @@ const Land = () => {
       <Nav />
       <div
         className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8
-    flex-col items-center  text-white pt-20 pb-60  md:px-3 md:text-left'
+    flex-col items-center  text-white pt-20 pb-60  md:px-3 md:text-left text-center'
       >
         <h2 className='leading-[95px] md:leading-[80px] text-[75px] md:text-[100px] italic font-extrabold -tracking-[.04em]'>
           Random
