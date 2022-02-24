@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import Nav from './Nav'
 import { useEthers } from '@usedapp/core';
 import { useMint } from '../../hooks/NFTContract';
-import { pinJSONToIPFS } from '../../utils/pinata'
+// import { pinJSONToIPFS } from '../../utils/pinata'
 
 const Land = () => {
   const {account} = useEthers();
