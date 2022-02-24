@@ -1,4 +1,10 @@
 import React, { useState } from 'react'
+import Fortmatic from 'fortmatic'
+import { useEthers, shortenAddress } from '@usedapp/core'
+// import { toast } from 'react-toastify'
+import WalletConnectProvider from '@walletconnect/web3-provider'
+import Web3Modal from 'web3modal'
+import 'react-toastify/dist/ReactToastify.css'
 import { Transition } from '@headlessui/react'
 import { ReactComponent as IconLogo } from '../../assets/icons/Logo.svg'
 
@@ -19,6 +25,50 @@ const pages = [
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const { account, activate, deactivate } = useEthers()
+
+  // Example for Polygon/Matic:
+  // const customNetworkOptions = {
+  //   rpcUrl: 'https://rpc-mainnet.maticvigil.com',
+  //   chainId: 137
+  // }
+
+  const handleConnect = async () => {
+    const providerOptions = {
+      injected: {
+        display: {
+          name: 'Metamask',
+          description: 'Connect with the provider in your Browser',
+        },
+        package: null,
+      },
+      walletconnect: {
+        package: WalletConnectProvider,
+        options: {
+          infuraId: process.env.REACT_APP_INFURA_ID,
+        },
+      },
+      fortmatic: {
+        package: Fortmatic, // required
+        options: {
+          key: process.env.REACT_APP_FORTMATIC_KEY, // required,
+          //network: customNetworkOptions // if we don't pass it, it will default to localhost:8454
+        }
+      },
+    }
+
+    if (!account) {
+      const web3Modal = new Web3Modal({
+        // network: "ropsten",
+        // network: "ropsten", // optional
+        providerOptions,
+      })
+      const provider = await web3Modal.connect()
+      // const provider = new ethers.providers.Web3Provider(instance)
+      // const signer = provider.getSigner()
+      await activate(provider)
+    }
+  }
   return (
     <div className=''>
       <nav className=''>
@@ -42,9 +92,21 @@ const Nav = () => {
                 </div>
               </div>
               <div className='hidden md:block '>
-                <button className='border-[#577a30] border-2 rounded-lg p-2 text-[#577a30] font-bold hover:bg-gray-700 hover:text-white'>
-                  CONNECT WALLET
-                </button>
+                {!account ? (
+                  <button
+                    className='border-[#577a30] border-2 rounded-lg p-2 text-[#577a30] font-bold hover:bg-gray-700 hover:text-white'
+                    onClick={handleConnect}
+                  >
+                    CONNECT WALLET
+                  </button>
+                ) : (
+                  <button
+                    className='border-[#577a30] border-2 rounded-lg p-2 text-[#577a30] font-bold hover:bg-gray-700 hover:text-white'
+                    onClick={() => deactivate()}
+                  >
+                    {shortenAddress(account)}
+                  </button>
+                )}
               </div>
             </div>
             <div className='-mr-2 flex md:hidden'>
@@ -71,7 +133,6 @@ const Nav = () => {
                       strokeWidth='2'
                       d='M2 6h16M4 12h14M2 18h16M4 24h14'
                     />
-                    
                   </svg>
                 ) : (
                   <svg
@@ -106,27 +167,42 @@ const Nav = () => {
         >
           {(ref) => (
             <div className='md:hidden' id='mobile-menu'>
-              <div ref={ref} className='px-2 pt-2 pb-3 space-y-5  h-full max-h-full w-1/2 sm:px-3 absolute bg-black right-0 z-50'>
-              {pages.map((page) => (
-                    <a
-                      key={page.link}
-                      className='hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium text-right'
-                      href={`#${page.link}`}
-                    >
-                      {page.text}
-                    </a>
-                  ))}
-                  <button className='border-[#577a30] border-2 rounded-lg p-2 text-[#577a30] font-bold hover:bg-gray-700 hover:text-white float-right'>
-                  CONNECT WALLET
-                </button>
+              <div
+                ref={ref}
+                className='px-2 pt-2 pb-3 space-y-5  h-full max-h-full w-1/2 sm:px-3 absolute bg-black right-0 z-50'
+              >
+                {pages.map((page) => (
+                  <a
+                    key={page.link}
+                    className='hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium text-right'
+                    href={`#${page.link}`}
+                  >
+                    {page.text}
+                  </a>
+                ))}
+
+                {!account ? (
+                  <button
+                    className='border-[#577a30] border-2 rounded-lg p-2 text-[#577a30] font-bold hover:bg-gray-700 hover:text-white float-right'
+                    onClick={handleConnect}
+                  >
+                    CONNECT WALLET
+                  </button>
+                ) : (
+                  <button
+                    className='border-[#577a30] border-2 rounded-lg p-2 text-[#577a30] font-bold hover:bg-gray-700 hover:text-white float-right'
+                    onClick={() => deactivate()}
+                  >
+                    {shortenAddress(account)}
+                  </button>
+                )}
+
               </div>
-              
             </div>
           )}
         </Transition>
       </nav>
     </div>
-    
   )
 }
 

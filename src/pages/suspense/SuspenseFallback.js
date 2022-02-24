@@ -6,7 +6,6 @@ const SuspenseFallback = () => {
     <div className='spinner-container'>
       <div className='loading-box'>
         <div className='loader'></div>
-        <div className='text'>Loading ...</div>
       </div>
     </div>
   );

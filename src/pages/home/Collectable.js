@@ -3,10 +3,10 @@ const Collectable = () => {
   return (
     <section className='bg-white'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center relative '>
-        <div className='bg-[#c4c4c4] py-28 md:py-40 px-8 md:px-20 text-xl rounded font-semibold text-black -tracking-[.04em]  absolute top-[-6.75rem] '>
-          <span>Put your own NFT here</span>
+        <div className='bg-[#c4c4c4] text-xl rounded font-semibold text-black -tracking-[.04em]  absolute top-[-6.75rem] '>
+          <img alt= "fff" src="https://ipfs.io/ipfs/Qmdhq43NUrCqgs9hHa8MuKToCKPetXk5N9dqjHvdGyUuw4" className="w-72 h-72"></img>
         </div>
-        <span className='text-[#253216] text-center text-4xl md:text-6xl font-bold italic mt-52 md:mt-96 mb-6 md:mb-14 -tracking-[.04em] uppercase'>
+        <span className='text-[rgb(37,50,22)] text-center text-4xl md:text-6xl font-bold italic mt-52 md:mt-96 mb-6 md:mb-14 -tracking-[.04em] uppercase'>
           UNIQUE DIGITAL COLLECTABLES
         </span>
       </div>

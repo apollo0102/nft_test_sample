@@ -1,1 +1,1 @@
-export { default } from './SuspenseFallback.jsx';
+export { default } from './SuspenseFallback.js';
